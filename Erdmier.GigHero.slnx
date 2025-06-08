@@ -3,4 +3,7 @@
     <File Path=".gitignore" />
     <File Path="README.md" />
   </Folder>
+  <Folder Name="/Source/">
+    <Project Path="Source\Domain\Domain.csproj" Type="Classic C#" />
+  </Folder>
 </Solution>
