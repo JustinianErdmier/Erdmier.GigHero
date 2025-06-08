@@ -2,18 +2,20 @@
 
 namespace Erdmier.GigHero.Domain.JobAggregate.Entities;
 
-public sealed class Payment
+public sealed class Payment : Entity<PaymentId>
 {
     private Payment()
     { }
 
-    private Payment(ExpectedPayment expected, PaymentStatuses status)
+    private Payment(ExpectedPayment expected, PaymentStatuses status, PaymentId? id = null)
+        : base(id ?? PaymentId.CreateUnique())
     {
         Expected = expected;
         Status   = status;
     }
 
-    private Payment(ActualPayment actual, ExpectedPayment expected, PaymentStatuses status)
+    private Payment(ActualPayment actual, ExpectedPayment expected, PaymentStatuses status, PaymentId? id = null)
+        : base(id ?? PaymentId.CreateUnique())
     {
         Actual   = actual;
         Expected = expected;

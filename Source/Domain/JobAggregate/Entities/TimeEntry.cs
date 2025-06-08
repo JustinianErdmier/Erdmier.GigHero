@@ -1,13 +1,17 @@
 ﻿namespace Erdmier.GigHero.Domain.JobAggregate.Entities;
 
-public sealed class TimeEntry
+public sealed class TimeEntry : Entity<TimeEntryId>
 {
     private TimeEntry()
     { }
 
-    private TimeEntry(TimeEntryStart startTime) => Start = startTime;
+    private TimeEntry(TimeEntryStart startTime, TimeEntryId? id = null)
+        : base(id ?? TimeEntryId.CreateUnique())
+        => Start = startTime;
 
-    private TimeEntry(TimeEntryStart startTime, TimeEntryEnd endTime) => (Start, End) = (startTime, endTime);
+    private TimeEntry(TimeEntryStart startTime, TimeEntryEnd endTime, TimeEntryId? id = null)
+        : base(id ?? TimeEntryId.CreateUnique())
+        => (Start, End) = (startTime, endTime);
 
     public TimeEntryStart Start { get; private set; } = TimeEntryStart.Create();
 
