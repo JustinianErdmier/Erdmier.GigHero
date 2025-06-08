@@ -13,9 +13,9 @@ public sealed class TimeEntry : Entity<TimeEntryId>
         : base(id ?? TimeEntryId.CreateUnique())
         => (Start, End) = (startTime, endTime);
 
-    public TimeEntryStart Start { get; private set; } = TimeEntryStart.Create();
-
     public TimeEntryEnd? End { get; private set; }
+
+    public TimeEntryStart Start { get; private set; } = TimeEntryStart.Create();
 
     public TimeSpan TimeWorked => End is null ? Start.Time.Subtract(DateTimeOffset.Now) : End.Time.Subtract(Start.Time);
 
