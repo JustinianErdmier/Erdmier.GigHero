@@ -1,4 +1,6 @@
-﻿namespace Erdmier.GigHero.Domain.JobAggregate.Interfaces;
+﻿using Erdmier.GigHero.Domain.AssignmentAggregate.Entities;
+
+namespace Erdmier.GigHero.Domain.AssignmentAggregate.Interfaces;
 
 public interface IAssignment
 {

@@ -1,6 +1,6 @@
-﻿using Erdmier.GigHero.Domain.JobAggregate.Enums;
+﻿using Erdmier.GigHero.Domain.AssignmentAggregate.Enums;
 
-namespace Erdmier.GigHero.Domain.JobAggregate.Entities;
+namespace Erdmier.GigHero.Domain.AssignmentAggregate.Entities;
 
 public sealed class Payment : Entity<PaymentId>
 {

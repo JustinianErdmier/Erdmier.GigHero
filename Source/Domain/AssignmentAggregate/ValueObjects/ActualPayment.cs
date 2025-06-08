@@ -1,4 +1,4 @@
-﻿namespace Erdmier.GigHero.Domain.JobAggregate.ValueObjects;
+﻿namespace Erdmier.GigHero.Domain.AssignmentAggregate.ValueObjects;
 
 public sealed class ActualPayment : ValueObject
 {

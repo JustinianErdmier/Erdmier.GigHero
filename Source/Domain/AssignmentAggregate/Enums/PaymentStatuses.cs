@@ -1,4 +1,4 @@
-﻿namespace Erdmier.GigHero.Domain.JobAggregate.Enums;
+﻿namespace Erdmier.GigHero.Domain.AssignmentAggregate.Enums;
 
 public enum PaymentStatuses
 {

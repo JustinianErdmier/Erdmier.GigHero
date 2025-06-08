@@ -1,4 +1,4 @@
-﻿namespace Erdmier.GigHero.Domain.JobAggregate.Interfaces;
+﻿namespace Erdmier.GigHero.Domain.AssignmentAggregate.Interfaces;
 
 public interface IPaidSetAmountAssignment : IAssignment
 {

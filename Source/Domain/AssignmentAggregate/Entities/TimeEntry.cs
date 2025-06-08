@@ -1,4 +1,4 @@
-﻿namespace Erdmier.GigHero.Domain.JobAggregate.Entities;
+﻿namespace Erdmier.GigHero.Domain.AssignmentAggregate.Entities;
 
 public sealed class TimeEntry : Entity<TimeEntryId>
 {

@@ -1,4 +1,7 @@
-﻿namespace Erdmier.GigHero.Domain.JobAggregate;
+﻿using Erdmier.GigHero.Domain.AssignmentAggregate.Entities;
+using Erdmier.GigHero.Domain.AssignmentAggregate.Interfaces;
+
+namespace Erdmier.GigHero.Domain.AssignmentAggregate;
 
 public sealed class Assignment : AggregateRoot<AssignmentId, Guid>, IPaidSetAmountAssignment, IPaidHourlyAssignment
 {
