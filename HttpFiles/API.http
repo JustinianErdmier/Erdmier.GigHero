@@ -1,6 +1,31 @@
-@API_HostAddress = http://localhost:5112
+@API_HostAddress = https://localhost:7053
+@UserEmail = justinian.erdmier@outlook.com
+@UserPassword = MyGigHero@2025
 
-GET {{API_HostAddress}}/weatherforecast/
-Accept: application/json
+POST {{API_HostAddress}}/register/
+Content-Type: application/json
+
+{
+  "email": "{{UserEmail}}",
+  "password": "{{UserPassword}}"
+}
 
 ###
+
+POST {{API_HostAddress}}/login?useCookies=true
+Content-Type: application/json
+
+{
+  "email": "{{UserEmail}}",
+  "password": "{{UserPassword}}"
+}
+
+###
+
+POST {{API_HostAddress}}/gigs/
+Content-Type: application/json
+
+{
+  "name":       "Rev",
+  "websiteUrl": "https://www.rev.com/workspace/dashboard"
+}

@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Erdmier.GigHero.Application.Gigs.Queries;
 
-public sealed class GetAllGigsQueryHandler : IQueryHandler<GetAllGigsQuery, IList<Gig>>
+public sealed class GetAllGigsQueryHandler : IQueryHandler<GetAllGigsQuery, List<Gig>>
 {
     private readonly ApplicationDbContext _context;
 
     public GetAllGigsQueryHandler(ApplicationDbContext context) => _context = context;
 
-    public async ValueTask<IList<Gig>> Handle(GetAllGigsQuery query, CancellationToken cancellationToken)
+    public async ValueTask<List<Gig>> Handle(GetAllGigsQuery query, CancellationToken cancellationToken)
     {
         List<Gig> gigs = [];
 
