@@ -1,15 +1,15 @@
 ﻿<Solution>
-  <Folder Name="/SolutionItems/">
-    <File Path=".gitignore" />
-    <File Path="README.md" />
-  </Folder>
-  <Folder Name="/SolutionItems/HttpFiles/">
-    <File Path="HttpFiles\API.http" />
-  </Folder>
-  <Folder Name="/Source/">
-    <Project Path="Source\API\API.csproj" Type="Classic C#" />
-    <Project Path="Source\Application\Application.csproj" Type="Classic C#" />
-    <Project Path="Source\Domain\Domain.csproj" Type="Classic C#" />
-    <Project Path="Source\Persistence\Persistence.csproj" Type="Classic C#" />
-  </Folder>
+    <Folder Name="/SolutionItems/">
+        <File Path=".gitignore" />
+        <File Path="README.md" />
+    </Folder>
+    <Folder Name="/SolutionItems/HttpFiles/">
+        <File Path="HttpFiles\API.http" />
+    </Folder>
+    <Folder Name="/Source/">
+        <Project Path="Source\API\API.csproj" Type="Classic C#" />
+        <Project Path="Source\Application\Application.csproj" Type="Classic C#" />
+        <Project Path="Source\Domain\Domain.csproj" Type="Classic C#" />
+        <Project Path="Source\Persistence\Persistence.csproj" Type="Classic C#" />
+    </Folder>
 </Solution>

@@ -22,7 +22,7 @@ public sealed class ApplicationDbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.ConfigureApplicationUserAggregate();
-        modelBuilder.ConfigureAssignmentAggregate();
         modelBuilder.ConfigureGigAggregate();
+        modelBuilder.ConfigureAssignmentAggregate();
     }
 }

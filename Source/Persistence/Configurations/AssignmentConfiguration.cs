@@ -1,4 +1,5 @@
 ﻿using Erdmier.GigHero.Domain.AssignmentAggregate.ValueObjects;
+using Erdmier.GigHero.Domain.Gig.ValueObjects;
 
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -22,6 +23,20 @@ public sealed class AssignmentConfiguration : IEntityTypeConfiguration<Assignmen
         builder.Property(a => a.Id)
                .ValueGeneratedNever()
                .HasConversion(id => id.Value, value => AssignmentId.Create(value));
+
+        builder.Property(a => a.GigId)
+               .ValueGeneratedNever()
+               .HasConversion(id => id.Value,
+                              value => GigId.Create(value));
+
+        builder.Property(a => a.Name)
+               .HasMaxLength(maxLength: 50)
+               .IsRequired();
+
+        builder.Property(a => a.Uri)
+               .HasMaxLength(maxLength: 256);
+
+        builder.HasIndex(a => a.GigId);
     }
 
     private static void ConfigureAssignmentPaymentsTable(EntityTypeBuilder<Assignment> builder)
@@ -39,17 +54,21 @@ public sealed class AssignmentConfiguration : IEntityTypeConfiguration<Assignmen
                              pb.Property(p => p.Id)
                                .HasColumnName(name: "AssignmentPaymentId")
                                .ValueGeneratedNever()
-                               .HasConversion(id => id.Value, value => PaymentId.Create(value));
+                               .HasConversion(id => id.Value,
+                                              value => PaymentId.Create(value));
 
                              pb.Property(p => p.Actual)
                                .HasColumnType(typeName: "decimal(7, 2)")
-                               .HasConversion(payment => payment.Amount, amount => ActualPayment.Create(amount));
+                               .HasConversion(payment => payment.Amount,
+                                              amount => ActualPayment.Create(amount));
 
                              pb.Property(p => p.Expected)
                                .HasColumnType(typeName: "decimal(7, 2)")
-                               .HasConversion(payment => payment.Amount, amount => ExpectedPayment.Create(amount));
+                               .HasConversion(payment => payment.Amount,
+                                              amount => ExpectedPayment.Create(amount));
 
                              pb.Property(p => p.Status)
+                               .HasMaxLength(maxLength: 26)
                                .HasConversion<string>();
 
                              pb.Property(p => p.StatusComment)
@@ -78,12 +97,12 @@ public sealed class AssignmentConfiguration : IEntityTypeConfiguration<Assignmen
                                 .HasConversion(id => id.Value, value => TimeEntryId.Create(value));
 
                              teb.Property(te => te.End)
-                                .HasColumnType(typeName: "datetimeoffset(7)")
+                                .HasColumnType(typeName: "datetimeoffset")
                                 .HasConversion(entry => entry == null ? DateTimeOffset.MinValue : entry.Time,
                                                time => time   != DateTimeOffset.MinValue ? TimeEntryEnd.Create(time) : null);
 
                              teb.Property(te => te.Start)
-                                .HasColumnType(typeName: "datetimeoffset(7)")
+                                .HasColumnType(typeName: "datetimeoffset")
                                 .HasConversion(entry => entry.Time,
                                                time => TimeEntryStart.Create(time));
                          });

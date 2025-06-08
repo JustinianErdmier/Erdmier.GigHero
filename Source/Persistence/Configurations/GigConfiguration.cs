@@ -20,7 +20,8 @@ public sealed class GigConfiguration : IEntityTypeConfiguration<Gig>
 
         builder.Property(g => g.Id)
                .ValueGeneratedNever()
-               .HasConversion(id => id.Value, value => GigId.Create(value));
+               .HasConversion(id => id.Value,
+                              value => GigId.Create(value));
 
         builder.Property(g => g.Name)
                .HasMaxLength(maxLength: 50)
