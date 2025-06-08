@@ -8,4 +8,10 @@
         <RootNamespace>Erdmier.GigHero.Domain</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Erdmier.DomainCore" Version="1.1.0" />
+      <PackageReference Include="ErrorOr" Version="2.0.1" />
+      <PackageReference Include="Mediator.Abstractions" Version="3.0.0-preview.65" />
+    </ItemGroup>
+
 </Project>
