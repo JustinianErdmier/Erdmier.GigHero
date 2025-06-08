@@ -7,12 +7,12 @@ public sealed class Gig : AggregateRoot<GigId, Guid>
     private Gig()
     { }
 
-    private Gig(string name, Guid userId, string? website, GigId? id = null)
+    private Gig(string name, Guid userId, string? websiteUrl, GigId? id = null)
         : base(id ?? GigId.CreateUnique())
     {
-        Name    = name;
-        UserId  = userId;
-        Website = website;
+        Name       = name;
+        UserId     = userId;
+        WebsiteUrl = websiteUrl;
     }
 
     public IReadOnlyList<AssignmentId> AssignmentIds => _assignmentIds.AsReadOnly();
@@ -21,7 +21,7 @@ public sealed class Gig : AggregateRoot<GigId, Guid>
 
     public Guid UserId { get; init; }
 
-    public string? Website { get; private set; }
+    public string? WebsiteUrl { get; private set; }
 
     public bool AddAssignmentId(AssignmentId assignmentId)
     {
@@ -37,7 +37,7 @@ public sealed class Gig : AggregateRoot<GigId, Guid>
 
     public void UpdateName(string name) => Name = name;
 
-    public void UpdateWebsite(string website) => Website = website;
+    public void UpdateWebsiteUrl(string url) => WebsiteUrl = url;
 
-    public static Gig Create(string name, Guid userId, string? website) => new(name, userId, website);
+    public static Gig Create(string name, Guid userId, string? websiteUrl) => new(name, userId, websiteUrl);
 }

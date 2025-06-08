@@ -26,8 +26,10 @@ public sealed class GigConfiguration : IEntityTypeConfiguration<Gig>
                .HasMaxLength(maxLength: 50)
                .IsRequired();
 
-        builder.Property(g => g.Website)
+        builder.Property(g => g.WebsiteUrl)
                .HasMaxLength(maxLength: 256);
+
+        builder.HasIndex(g => g.UserId);
     }
 
     private static void ConfigureGigAssignmentIdsTable(EntityTypeBuilder<Gig> builder)
