@@ -2,7 +2,7 @@
 
 public sealed class Gig : AggregateRoot<GigId, Guid>
 {
-    private readonly List<JobId> _jobIds = [];
+    private readonly List<AssignmentId> _assignmentIds = [];
 
     private Gig()
     { }
@@ -15,7 +15,7 @@ public sealed class Gig : AggregateRoot<GigId, Guid>
         Website = website;
     }
 
-    public IReadOnlyList<JobId> JobIds => _jobIds.AsReadOnly();
+    public IReadOnlyList<AssignmentId> AssignmentIds => _assignmentIds.AsReadOnly();
 
     public string Name { get; private set; } = null!;
 
@@ -23,14 +23,14 @@ public sealed class Gig : AggregateRoot<GigId, Guid>
 
     public string? Website { get; private set; }
 
-    public bool AddJobId(JobId jobId)
+    public bool AddAssignmentId(AssignmentId assignmentId)
     {
-        if (_jobIds.Contains(jobId))
+        if (_assignmentIds.Contains(assignmentId))
         {
             return false;
         }
 
-        _jobIds.Add(jobId);
+        _assignmentIds.Add(assignmentId);
 
         return true;
     }

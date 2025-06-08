@@ -1,16 +1,16 @@
 ﻿namespace Erdmier.GigHero.Domain.JobAggregate;
 
-public sealed class Job : AggregateRoot<JobId, Guid>, IPaidSetAmountJob, IPaidHourlyJob
+public sealed class Assignment : AggregateRoot<AssignmentId, Guid>, IPaidSetAmountAssignment, IPaidHourlyAssignment
 {
     private readonly List<Payment> _payments = [];
 
     private readonly List<TimeEntry> _timeEntries = [];
 
-    private Job()
+    private Assignment()
     { }
 
-    private Job(GigId gigId, string name, JobId? id = null)
-        : base(id ?? JobId.CreateUnique())
+    private Assignment(GigId gigId, string name, AssignmentId? id = null)
+        : base(id ?? AssignmentId.CreateUnique())
     {
         GigId = gigId;
         Name  = name;
@@ -76,5 +76,5 @@ public sealed class Job : AggregateRoot<JobId, Guid>, IPaidSetAmountJob, IPaidHo
         => _timeEntries.Where(x => x.End is not null)
                        .Aggregate(TimeSpan.Zero, (current, timeEntry) => current + (timeEntry.End!.Time - timeEntry.Start.Time));
 
-    public static Job Create(GigId gigId, string name) => new(gigId, name);
+    public static Assignment Create(GigId gigId, string name) => new(gigId, name);
 }

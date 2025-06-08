@@ -1,6 +1,6 @@
 ﻿namespace Erdmier.GigHero.Domain.JobAggregate.Interfaces;
 
-public interface IJob
+public interface IAssignment
 {
     public bool IsComplete { get; }
 

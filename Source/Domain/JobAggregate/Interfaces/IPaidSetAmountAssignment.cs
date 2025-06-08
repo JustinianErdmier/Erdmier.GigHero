@@ -1,6 +1,6 @@
 ﻿namespace Erdmier.GigHero.Domain.JobAggregate.Interfaces;
 
-public interface IPaidSetAmountJob : IJob
+public interface IPaidSetAmountAssignment : IAssignment
 {
     public decimal CalculateActualHourlyAveragePay();
 
