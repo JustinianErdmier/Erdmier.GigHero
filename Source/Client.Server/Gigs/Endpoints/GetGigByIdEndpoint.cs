@@ -1,16 +1,4 @@
-﻿using Erdmier.GigHero.Application.Gigs.Queries;
-using Erdmier.GigHero.Client.Shared.Common.Interfaces;
-using Erdmier.GigHero.Client.Shared.Gigs.Models.DTOs;
-using Erdmier.GigHero.Domain.GigAggregate;
-using Erdmier.GigHero.Domain.GigAggregate.ValueObjects;
-
-using FastEndpoints;
-
-using Mediator;
-
-using Microsoft.AspNetCore.Http.HttpResults;
-
-namespace Erdmier.GigHero.Client.Server.Gigs.Endpoints;
+﻿namespace Erdmier.GigHero.Client.Server.Gigs.Endpoints;
 
 public sealed class GetGigByIdEndpoint : Endpoint<EmptyRequest, Results<Ok<GetGigByIdResponse>, NotFound<GetGigByIdResponse>, InternalServerError<GetGigByIdResponse>>>
 {

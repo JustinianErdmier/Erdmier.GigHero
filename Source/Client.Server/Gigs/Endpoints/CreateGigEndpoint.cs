@@ -1,17 +1,4 @@
-﻿using System.Security.Claims;
-
-using Erdmier.GigHero.Application.Gigs.Commands;
-using Erdmier.GigHero.Client.Shared.Common.Interfaces;
-using Erdmier.GigHero.Client.Shared.Gigs.Models.DTOs;
-using Erdmier.GigHero.Domain.GigAggregate;
-
-using FastEndpoints;
-
-using Mediator;
-
-using Microsoft.AspNetCore.Http.HttpResults;
-
-namespace Erdmier.GigHero.Client.Server.Gigs.Endpoints;
+﻿namespace Erdmier.GigHero.Client.Server.Gigs.Endpoints;
 
 public sealed class CreateGigEndpoint : Endpoint<CreateGigRequest, Results<Created<CreateGigResponse>, InternalServerError<CreateGigResponse>>>
 {

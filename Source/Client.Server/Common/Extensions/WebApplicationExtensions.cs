@@ -1,8 +1,4 @@
-﻿using Erdmier.GigHero.Domain.ApplicationUserAggregate;
-
-using FastEndpoints;
-
-namespace Erdmier.GigHero.Client.Server.Common.Extensions;
+﻿namespace Erdmier.GigHero.Client.Server.Common.Extensions;
 
 public static class WebApplicationExtensions
 {
