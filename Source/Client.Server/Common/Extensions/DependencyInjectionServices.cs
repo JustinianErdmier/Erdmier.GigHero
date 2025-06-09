@@ -2,6 +2,8 @@
 using Erdmier.GigHero.Domain.ApplicationUserAggregate.Entities;
 using Erdmier.GigHero.Persistence.Contexts;
 
+using FastEndpoints;
+
 using Microsoft.AspNetCore.Identity;
 
 namespace Erdmier.GigHero.Client.Server.Common.Extensions;
@@ -18,10 +20,6 @@ public static class DependencyInjectionServices
         services.AddAuthentication(IdentityConstants.ApplicationScheme)
                 .AddIdentityCookies();
 
-        // services.AddAuthentication()
-        //         .AddJwtBearer()
-        //         .AddJwtBearer(authenticationScheme: "LocalAuthIssuer");
-
         services.AddAuthorizationBuilder();
 
         services.AddIdentityCore<ApplicationUser>()
@@ -37,7 +35,7 @@ public static class DependencyInjectionServices
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         services.AddOpenApi();
 
-        // services.AddFastEndpoints();
+        services.AddFastEndpoints();
 
         // services.AddCors(options => options.AddPolicy(name: "wasm",
         //                                               policy => policy

@@ -1,5 +1,7 @@
 ﻿using Erdmier.GigHero.Domain.ApplicationUserAggregate;
 
+using FastEndpoints;
+
 namespace Erdmier.GigHero.Client.Server.Common.Extensions;
 
 public static class WebApplicationExtensions
@@ -7,6 +9,8 @@ public static class WebApplicationExtensions
     public static WebApplication ConfigureMiddleware(this WebApplication app, IWebHostEnvironment environment)
     {
         app.MapIdentityApi<ApplicationUser>();
+
+        app.UseFastEndpoints();
 
         if (environment.IsDevelopment())
         {
