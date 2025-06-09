@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ###
 
-POST {{API_HostAddress}}/gigs/
+POST {{API_HostAddress}}/api/gigs/
 Content-Type: application/json
 
 {
@@ -32,9 +32,9 @@ Content-Type: application/json
 
 ###
 
-GET {{API_HostAddress}}/gigs/
+GET {{API_HostAddress}}/api/gigs/
 
 ###
 
 @GigId = 019755d9-4757-70b8-97ad-72565f429a52
-GET {{API_HostAddress}}/gigs/{{GigId}}
+GET {{API_HostAddress}}/api/gigs/{{GigId}}
