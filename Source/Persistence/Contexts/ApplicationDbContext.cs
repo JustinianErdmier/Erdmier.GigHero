@@ -1,4 +1,5 @@
-﻿using Erdmier.GigHero.Persistence.Common.Extensions;
+﻿using Erdmier.GigHero.Domain.GigAggregate;
+using Erdmier.GigHero.Persistence.Common.Extensions;
 
 namespace Erdmier.GigHero.Persistence.Contexts;
 

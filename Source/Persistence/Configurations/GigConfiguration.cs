@@ -1,4 +1,5 @@
-﻿using Erdmier.GigHero.Domain.Gig.ValueObjects;
+﻿using Erdmier.GigHero.Domain.GigAggregate;
+using Erdmier.GigHero.Domain.GigAggregate.ValueObjects;
 
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

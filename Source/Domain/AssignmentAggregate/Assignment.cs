@@ -1,5 +1,6 @@
 ﻿using Erdmier.GigHero.Domain.AssignmentAggregate.Entities;
 using Erdmier.GigHero.Domain.AssignmentAggregate.Interfaces;
+using Erdmier.GigHero.Domain.GigAggregate.ValueObjects;
 
 namespace Erdmier.GigHero.Domain.AssignmentAggregate;
 

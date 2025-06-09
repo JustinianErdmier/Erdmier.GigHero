@@ -1,4 +1,5 @@
-﻿using Erdmier.GigHero.Persistence.Contexts;
+﻿using Erdmier.GigHero.Domain.GigAggregate;
+using Erdmier.GigHero.Persistence.Contexts;
 
 namespace Erdmier.GigHero.Application.Gigs.Commands;
 
