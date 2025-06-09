@@ -6,13 +6,13 @@ namespace Erdmier.GigHero.Client.Server.Common.Extensions;
 
 public static class WebApplicationExtensions
 {
-    public static WebApplication ConfigureMiddleware(this WebApplication app, IWebHostEnvironment environment)
+    public static WebApplication ConfigureMiddleware(this WebApplication app)
     {
         app.MapIdentityApi<ApplicationUser>();
 
         app.UseFastEndpoints();
 
-        if (environment.IsDevelopment())
+        if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
         }
