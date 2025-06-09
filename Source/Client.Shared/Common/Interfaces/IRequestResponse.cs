@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Erdmier.GigHero.Client.Shared.Common.Interfaces;
+﻿namespace Erdmier.GigHero.Client.Shared.Common.Interfaces;
 
 public interface IRequestResponse
 {
@@ -15,6 +13,6 @@ public interface IRequestResponse<out TReturnData> : IRequestResponse
 {
     TReturnData? Data { get; }
 
-    [ MemberNotNullWhen(returnValue: true, nameof(Data)) ]
+    // [ MemberNotNullWhen(returnValue: true, nameof(Data)) ]
     bool HasData { get; }
 }

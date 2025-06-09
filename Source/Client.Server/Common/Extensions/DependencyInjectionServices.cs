@@ -1,8 +1,4 @@
-﻿using Erdmier.GigHero.Domain.ApplicationUserAggregate;
-using Erdmier.GigHero.Domain.ApplicationUserAggregate.Entities;
-using Erdmier.GigHero.Persistence.Contexts;
-
-using FastEndpoints;
+﻿using Erdmier.GigHero.Persistence.Contexts;
 
 using Microsoft.AspNetCore.Identity;
 
