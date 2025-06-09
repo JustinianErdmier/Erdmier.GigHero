@@ -21,9 +21,7 @@ public sealed class GetAllGigsEndpoint : Endpoint<EmptyRequest, Results<Ok<GetAl
     {
         try
         {
-            Guid userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-
-            List<Gig> gigs = await _sender.Send(new GetAllGigsQuery(userId), cancellationToken);
+            List<Gig> gigs = await _sender.Send(new GetAllGigsQuery(User.GetId()), cancellationToken);
 
             return TypedResults.Ok(GetAllGigsResponse.Success(gigs.Select(_gigMapper.MapToDto).ToList()));
         }

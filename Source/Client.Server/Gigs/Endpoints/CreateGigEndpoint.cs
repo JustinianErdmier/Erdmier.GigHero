@@ -22,9 +22,7 @@ public sealed class CreateGigEndpoint : Endpoint<CreateGigRequest, Results<Creat
     {
         try
         {
-            Guid userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-
-            Gig? result = await _sender.Send(new CreateGigCommand(request.Name, userId, request.WebsiteUrl), cancellationToken);
+            Gig? result = await _sender.Send(new CreateGigCommand(request.Name, User.GetId(), request.WebsiteUrl), cancellationToken);
 
             return result is null
                        ? TypedResults.InternalServerError(CreateGigResponse.Failure(errorMessage: "Unable to create Gig."))
