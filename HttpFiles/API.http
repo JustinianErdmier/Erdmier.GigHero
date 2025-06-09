@@ -29,3 +29,12 @@ Content-Type: application/json
   "name":       "Rev",
   "websiteUrl": "https://www.rev.com/workspace/dashboard"
 }
+
+###
+
+GET {{API_HostAddress}}/gigs/
+
+###
+
+@GigId = 019755d9-4757-70b8-97ad-72565f429a52
+GET {{API_HostAddress}}/gigs/{{GigId}}

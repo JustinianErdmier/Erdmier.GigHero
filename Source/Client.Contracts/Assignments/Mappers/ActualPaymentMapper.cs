@@ -1,8 +1,8 @@
 ﻿namespace Erdmier.GigHero.Client.Contracts.Assignments.Mappers;
 
-public sealed class ActualPaymentMapper : IMapper<AssignmentId, AssignmentIdDto>
+public sealed class ActualPaymentMapper : IMapper<ActualPayment, ActualPaymentDto>
 {
-    public AssignmentIdDto MapToDto(AssignmentId domain) => AssignmentIdDto.Create(domain.Value);
+    public ActualPaymentDto MapToDto(ActualPayment domain) => ActualPaymentDto.Create(domain.Amount);
 
-    public AssignmentId MapToDomain(AssignmentIdDto dto) => AssignmentId.Create(dto.Value);
+    public ActualPayment MapToDomain(ActualPaymentDto dto) => ActualPayment.Create(dto.Amount);
 }

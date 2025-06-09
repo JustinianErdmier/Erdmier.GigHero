@@ -4,17 +4,22 @@ using Erdmier.GigHero.API.Common.Extensions;
 using Erdmier.GigHero.Application.Common.Extensions;
 using Erdmier.GigHero.Application.Gigs.Commands;
 using Erdmier.GigHero.Application.Gigs.Queries;
+using Erdmier.GigHero.Client.Contracts.Common.Extensions;
+using Erdmier.GigHero.Client.Contracts.Gigs.Models.Requests;
 using Erdmier.GigHero.Domain.Gig;
 using Erdmier.GigHero.Domain.Gig.ValueObjects;
 using Erdmier.GigHero.Persistence.Common.Extensions;
 
 using Mediator;
 
+using Microsoft.AspNetCore.Mvc;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 Console.WriteLine(builder.Environment.EnvironmentName);
 
 builder.Services.AddApi(builder.Configuration, builder.Environment)
+       .AddClientShared()
        .AddApplication()
        .AddPersistence(builder.Configuration, builder.Environment);
 
@@ -24,11 +29,11 @@ WebApplication app = builder.Build()
 // TODO: Need to create a request object to wrap the name and websiteUrl and then use [FromBody]
 // https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/IdentityApiEndpointRouteBuilderExtensions.cs
 app.MapPost(pattern: "/gigs/",
-            async (string name, string? websiteUrl, ClaimsPrincipal user, ISender sender, CancellationToken cancellationToken) =>
+            async ([ FromBody ] CreateGigRequest request, ClaimsPrincipal user, ISender sender, CancellationToken cancellationToken) =>
             {
                 Guid userId = Guid.Parse(user.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
-                CreateGigCommand command = new(name, userId, websiteUrl);
+                CreateGigCommand command = new(request.Name, userId, request.WebsiteUrl);
 
                 Gig? response = await sender.Send(command, cancellationToken);
 
