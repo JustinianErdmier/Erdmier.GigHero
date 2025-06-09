@@ -1,6 +1,7 @@
 ﻿namespace Erdmier.GigHero.Client.Server.Gigs.Endpoints;
 
-public sealed class GetGigByIdEndpoint : Endpoint<EmptyRequest, Results<Ok<GetGigByIdResponse>, NotFound<GetGigByIdResponse>, InternalServerError<GetGigByIdResponse>>>
+public sealed class GetGigByIdEndpoint
+    : Endpoint<EmptyRequest, Results<Ok<GetGigByIdResponse>, NotFound<GetGigByIdResponse>, UnauthorizedHttpResult, InternalServerError<GetGigByIdResponse>>>
 {
     private readonly IMapper<Gig, GigDto> _gigMapper;
 
@@ -17,7 +18,7 @@ public sealed class GetGigByIdEndpoint : Endpoint<EmptyRequest, Results<Ok<GetGi
         Get("/api/gigs/{id:guid}");
     }
 
-    public override async Task<Results<Ok<GetGigByIdResponse>, NotFound<GetGigByIdResponse>, InternalServerError<GetGigByIdResponse>>>
+    public override async Task<Results<Ok<GetGigByIdResponse>, NotFound<GetGigByIdResponse>, UnauthorizedHttpResult, InternalServerError<GetGigByIdResponse>>>
         ExecuteAsync(EmptyRequest request, CancellationToken cancellationToken)
     {
         try
@@ -25,6 +26,12 @@ public sealed class GetGigByIdEndpoint : Endpoint<EmptyRequest, Results<Ok<GetGi
             Guid id = Route<Guid>(paramName: "id");
 
             Gig? result = await _sender.Send(new GetGigByIdQuery(GigId.Create(id)), cancellationToken);
+
+            if (result is not null
+                && result.UserId != User.GetId())
+            {
+                return TypedResults.Unauthorized();
+            }
 
             return result is null
                        ? TypedResults.NotFound(GetGigByIdResponse.Failure(errorMessage: "Gig not found."))
