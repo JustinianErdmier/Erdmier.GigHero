@@ -314,3 +314,4 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/HttpFiles/http-client.private.env.json

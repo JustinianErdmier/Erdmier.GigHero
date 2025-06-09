@@ -1,0 +1,17 @@
+﻿POST {{BaseUri}}/register/
+Content-Type: application/json
+
+{
+  "email": "{{UserEmail}}",
+  "password": "{{UserPassword}}"
+}
+
+###
+
+POST {{BaseUri}}/login?useCookies=true
+Content-Type: application/json
+
+{
+  "email": "{{UserEmail}}",
+  "password": "{{UserPassword}}"
+}

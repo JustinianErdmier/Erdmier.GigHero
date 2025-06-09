@@ -4,7 +4,11 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/SolutionItems/HttpFiles/">
-    <File Path="HttpFiles\API.http" />
+    <File Path="HttpFiles\Gigs.http" />
+    <File Path="HttpFiles\http-client.env.json" />
+    <File Path="HttpFiles\http-client.private.env.json" />
+    <File Path="HttpFiles\Assignments.http" />
+    <File Path="HttpFiles\Auth.http" />
   </Folder>
   <Folder Name="/Source/">
     <Project Path="Source\Application\Application.csproj" Type="Classic C#" />

@@ -1,0 +1,18 @@
+@GigsUri = {{BaseUri}}/api/gigs
+
+POST {{GigsUri}}
+Content-Type: application/json
+
+{
+  "name":       "Rev",
+  "websiteUrl": "https://www.rev.com/workspace/dashboard"
+}
+
+###
+
+GET {{GigsUri}}
+
+###
+
+@TestGigId = 019755d9-4757-70b8-97ad-72565f429a52
+GET {{GigsUri}}/{{TestGigId}}
