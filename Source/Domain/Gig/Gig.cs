@@ -40,4 +40,16 @@ public sealed class Gig : AggregateRoot<GigId, Guid>
     public void UpdateWebsiteUrl(string url) => WebsiteUrl = url;
 
     public static Gig Create(string name, Guid userId, string? websiteUrl) => new(name, userId, websiteUrl);
+
+    public static Gig CreateFromDto(GigId id, string name, Guid userId, string? websiteUrl, IReadOnlyList<AssignmentId> assignmentIds)
+    {
+        Gig gig = new(name, userId, websiteUrl, id);
+
+        foreach (AssignmentId assignmentId in assignmentIds)
+        {
+            gig.AddAssignmentId(assignmentId);
+        }
+
+        return gig;
+    }
 }

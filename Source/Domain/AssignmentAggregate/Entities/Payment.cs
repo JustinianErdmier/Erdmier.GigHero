@@ -96,4 +96,16 @@ public sealed class Payment : Entity<PaymentId>
     public static Payment Create(ExpectedPayment expectedPay) => new(expectedPay, PaymentStatuses.Unpaid);
 
     public static Payment Create(ActualPayment actualPay, ExpectedPayment expectedPay) => new(actualPay, expectedPay, PaymentStatuses.Unpaid);
+
+    public static Payment CreateFromDto(PaymentId       id,
+                                        ActualPayment   actualPay,
+                                        ExpectedPayment expectedPay,
+                                        PaymentStatuses status,
+                                        string?         statusComment,
+                                        DateTimeOffset? payoutDate)
+        => new(actualPay, expectedPay, status, id)
+        {
+            StatusComment = statusComment,
+            PayoutDate    = payoutDate
+        };
 }

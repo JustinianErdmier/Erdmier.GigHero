@@ -80,4 +80,33 @@ public sealed class Assignment : AggregateRoot<AssignmentId, Guid>, IPaidSetAmou
                        .Aggregate(TimeSpan.Zero, (current, timeEntry) => current + (timeEntry.End!.Time - timeEntry.Start.Time));
 
     public static Assignment Create(GigId gigId, string name) => new(gigId, name);
+
+    public static Assignment CreateFromDto(AssignmentId             id,
+                                           GigId                    gigId,
+                                           string                   name,
+                                           float                    hourlyRate,
+                                           bool                     isComplete,
+                                           string?                  uri,
+                                           IReadOnlyList<Payment>   payments,
+                                           IReadOnlyList<TimeEntry> timeEntries)
+    {
+        Assignment assignment = new(gigId, name, id)
+        {
+            HourlyRate = hourlyRate,
+            IsComplete = isComplete,
+            Uri        = uri
+        };
+
+        foreach (Payment payment in payments)
+        {
+            assignment.AddPayment(payment);
+        }
+
+        foreach (TimeEntry timeEntry in timeEntries)
+        {
+            assignment.AddTimeEntry(timeEntry);
+        }
+
+        return assignment;
+    }
 }

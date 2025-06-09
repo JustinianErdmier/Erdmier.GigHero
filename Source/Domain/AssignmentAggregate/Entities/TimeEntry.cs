@@ -47,4 +47,7 @@ public sealed class TimeEntry : Entity<TimeEntryId>
     public static TimeEntry Create(TimeEntryStart start) => new(start);
 
     public static TimeEntry Create(TimeEntryStart startTime, TimeEntryEnd endTime) => new(startTime, endTime);
+
+    public static TimeEntry CreateFromDto(TimeEntryId id, TimeEntryStart startTime, TimeEntryEnd? endTime)
+        => endTime == null ? new TimeEntry(startTime, id) : new TimeEntry(startTime, endTime, id);
 }
