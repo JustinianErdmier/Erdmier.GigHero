@@ -1,4 +1,6 @@
-﻿namespace Erdmier.GigHero.Client.Server.Gigs.Endpoints;
+﻿using ErrorOr;
+
+namespace Erdmier.GigHero.Client.Server.Gigs.Endpoints;
 
 public sealed class GetGigByIdEndpoint
     : Endpoint<EmptyRequest, Results<Ok<GetGigByIdResponse>, NotFound<GetGigByIdResponse>, UnauthorizedHttpResult, InternalServerError<GetGigByIdResponse>>>
@@ -25,17 +27,19 @@ public sealed class GetGigByIdEndpoint
         {
             Guid id = Route<Guid>(paramName: "id");
 
-            Gig? result = await _sender.Send(new GetGigByIdQuery(GigId.Create(id)), cancellationToken);
+            ErrorOr<Gig> result = await _sender.Send(new GetGigByIdQuery(GigId.Create(id)), cancellationToken);
 
-            if (result is not null
-                && result.UserId != User.GetId())
+            if (!result.IsError
+                && result.Value.UserId != User.GetId())
             {
                 return TypedResults.Unauthorized();
             }
 
-            return result is null
-                       ? TypedResults.NotFound(GetGigByIdResponse.Failure(errorMessage: "Gig not found."))
-                       : TypedResults.Ok(GetGigByIdResponse.Success(_gigMapper.MapToDto(result)));
+            return result.MatchFirst<Results<Ok<GetGigByIdResponse>,
+                NotFound<GetGigByIdResponse>,
+                UnauthorizedHttpResult,
+                InternalServerError<GetGigByIdResponse>>>(value => TypedResults.Ok(GetGigByIdResponse.Success(_gigMapper.MapToDto(value))),
+                                                          error => TypedResults.InternalServerError(GetGigByIdResponse.Failure(error.Description)));
         }
         catch (Exception exception)
         {
